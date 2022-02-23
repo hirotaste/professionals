@@ -1,5 +1,3 @@
-import { TipoProfissional } from "./TipoProfissional";
-
 export type Profissional = {
     id?: string;                            // ID
     nome: string;                       // Nome do profisisonal *Obrigatório
