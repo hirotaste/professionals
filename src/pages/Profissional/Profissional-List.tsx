@@ -3,20 +3,30 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "../../components/Button";
 import { Profissional } from "../../models/Profissional";
+import { TipoProfissional } from "../../models/TipoProfissional";
 import { api } from "../../services/api";
 import { Container, Dflex, TextCenter } from './styles';
 
 export function ProfissionalList() {
     const [profissionais, setProfissionais] = useState<Profissional[]>([]);
+    const [tiposProfissional, setTiposProfissional] = useState<TipoProfissional[]>([]);
     const navigate = useNavigate();
 
     useEffect(() => {
         api.get('profissionals')
-            .then(response => setProfissionais(response.data.profissionals))
+            .then(response => setProfissionais(response.data.profissionals));
+
+        api.get('tipos')
+            .then(response => setTiposProfissional(response.data.profissionalTipos));
     }, []);
 
     const handleProfissional = (profissionalID: string | undefined) => {
         navigate(`/profissional/${profissionalID}`);
+    }
+
+    const getProfissional = (tipoID: string) => {
+        const tipo = tiposProfissional.find(tipo => tipo.id == tipoID);
+        return tipo ? tipo.descricao : '';
     }
 
     return (
@@ -49,7 +59,7 @@ export function ProfissionalList() {
                                     <TextCenter>{profissional.telefone}</TextCenter>
                                 </td>
                                 <td>{profissional.email}</td>
-                                <td>{profissional.tipoDeProfissional}</td>
+                                <td>{ getProfissional(profissional.tipoDeProfissional) }</td>
                                 <td>
                                     <TextCenter>{profissional.situacao ? 'Ativo' : 'Inativo'}</TextCenter>
                                 </td>

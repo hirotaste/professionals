@@ -28,7 +28,7 @@ createServer({
           nome: 'Maria',
           telefone: '8888-8888',
           email: 'maria@email.com',
-          tipoDeProfissional: 1,
+          tipoDeProfissional: 3,
           situacao: true,
           updatedAt: new Date('2022-02-02 09:25:34'),
           createdAt: new Date('2022-01-25 09:25:34')
@@ -38,7 +38,7 @@ createServer({
           nome: 'Manoel',
           telefone: '7777-7777',
           email: 'manoel@email.com',
-          tipoDeProfissional: 1,
+          tipoDeProfissional: 2,
           situacao: true,
           updatedAt: new Date('2022-02-20 09:25:34'),
           createdAt: new Date('2022-02-10 09:25:34')
