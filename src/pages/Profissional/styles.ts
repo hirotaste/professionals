@@ -18,7 +18,7 @@ export const Container = styled.div`
     tr {
       td {
         padding: 1rem;
-        min-width: 100px;
+        min-width: 120px;
       }
     }
     .cursor-pointer {
