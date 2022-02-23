@@ -36,7 +36,7 @@ export function ProfissionalList() {
                     <h1>Listagem de Profissionais</h1>
                 </div>
                 <div>
-                    <Button type="button" onClick={() => navigate('create')}>Cadastrar Profissional</Button>
+                    <Button type="button" onClick={() => navigate('/profissional/create')}>Cadastrar Profissional</Button>
                 </div>
             </Dflex>            
             
