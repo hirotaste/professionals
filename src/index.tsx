@@ -2,7 +2,6 @@ import ReactDOM from 'react-dom';
 import { createServer, Model } from 'miragejs';
 import { App } from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { Profissional } from './models/Profissional';
 
 createServer({
   models: {
