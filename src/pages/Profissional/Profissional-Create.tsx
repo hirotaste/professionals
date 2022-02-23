@@ -28,6 +28,7 @@ export function ProfissionalCreate() {
     const [email, setEmail] = useState('');
     const [telefone, setTelefone] = useState('');
     const [ativo, setAtivo] = useState(true);
+    const [tipo, setTipo] = useState('');
 
     const formRef = useRef<FormHandles>(null);
     const navigate = useNavigate();    
@@ -46,10 +47,21 @@ export function ProfissionalCreate() {
               setEmail(data.email);
               setTelefone(data.telefone);
               setAtivo(data.situacao);
+              setTipo(data.tipoDeProfissional);
             }
           )
         }
     }, []);
+
+    const handleAtivo = (ativo: boolean) => {
+      setAtivo(ativo);
+      api.put('/profissionals', { id: profissionalId, situacao: ativo });
+    }
+
+    const handleTipo = (tipo: string) => {
+      setTipo(tipo.toString());
+      api.put('/profissionals', { id: profissionalId, tipoDeProfissional: tipo.toString() });
+    }
 
     const handleSubmit = useCallback(
       async (data: IProfissionalFormData) => {
@@ -123,19 +135,19 @@ export function ProfissionalCreate() {
                   onChange={event => setEmail(event?.target?.value)}
                 />
 
-                {/* <Select cacheOptions defaultOptions loadOptions={tiposProfissional} /> */}
-
-                <Input
-                  type="text" 
-                  name="tipoDeProfissional" 
-                  placeholder="Tipo de Profissional" 
-                />
+                <select className="select" name="tipoDeProfissional" value={tipo} onChange={event => handleTipo(event?.target?.value)} >
+                   {tiposProfissional?.map(tipo => {
+                      return (
+                        <option key={tipo.id} value={tipo.id}>{tipo.descricao}</option>
+                      )
+                    })}
+                </select>
                 
                 <Dbuttons>
-                  <Button type="button" className={ativo ? 'button-active' : ''} onClick={() => { setAtivo(true) }} >
+                  <Button type="button" className={ativo ? 'button-active' : ''} onClick={() => { handleAtivo(true) }} >
                     Ativo
                   </Button>
-                  <Button type="button" className={!ativo ? 'button-active' : ''} onClick={() => { setAtivo(false); }} >
+                  <Button type="button" className={!ativo ? 'button-active' : ''} onClick={() => { handleAtivo(false); }} >
                     Inativo
                   </Button>
                 </Dbuttons>

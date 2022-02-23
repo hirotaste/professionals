@@ -19,14 +19,12 @@ export const Container = styled.div`
     width: 100%;
 
     border: 2px solid #232129;
-    color: #666360;
+    color: white;
 
     display: flex;
     align-items: center;
 
-    & + div {
-      margin-top: 8px;
-    }
+    margin-top: 8px;
 
     select {
       flex: 1;

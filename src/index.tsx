@@ -91,9 +91,9 @@ createServer({
     this.put('/profissionals', (schema, request) => {
       const data = JSON.parse(request.requestBody);
       if (data.id) {
-        const put = schema.find('profissional', data.id);
-        const { nome, email, telefone, situacao, tipoDeProfissional } = data;
-        put?.update({ nome, email, telefone, situacao, tipoDeProfissional, updatedAt: new Date() });
+        const put:any = schema.find('profissional', data.id);
+        const newItem = { ...put.attrs, ...data, updatedAt: new Date(), createdAt: put.attrs.createdAt, id: data.id };
+        put?.update(newItem);
         return true;
       } else {
         return false;
@@ -118,9 +118,9 @@ createServer({
     this.put('/tipos', (schema, request) => {
       const data = JSON.parse(request.requestBody);
       if (data.id) {
-        const put = schema.find('profissionalTipo', data.id);
-        const { descricao, situacao } = data;
-        put?.update({ descricao, situacao, updatedAt: new Date() });
+        const put: any = schema.find('profissionalTipo', data.id);
+        const newItem = { ...put.attrs, ...data, updatedAt: new Date(), createdAt: put.attrs.createdAt, id: data.id };
+        put?.update(newItem);
         return true;
       } else {
         return false;
